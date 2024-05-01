@@ -1,2 +1,28 @@
-<h1>Welcome to SvelteKit</h1>
-<p>Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation</p>
+<script>
+    import AboutCompany from "../lib/AboutCompany.svelte";
+import ProductCard from "../lib/ProductCard.svelte";
+
+    function mojaFunkcja() {
+        console.log("sperma");
+    }
+</script>
+
+<!-- 
+<div>
+    <img src="/Logo WHITE_background.png"  alt="Flowbite Logo" />
+</div> -->
+<div class="p-9 flex flex-wrap justify-center" >
+<!-- 
+    <ProductCard />
+    <ProductCard />
+    <ProductCard />
+    <ProductCard />
+    <ProductCard />
+    <ProductCard />
+    <ProductCard />
+    <ProductCard /> -->
+    <AboutCompany/>
+</div>
+
+<style>
+</style>
