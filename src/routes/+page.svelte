@@ -1,5 +1,7 @@
 <script>
     import AboutCompany from "../lib/AboutCompany.svelte";
+    import Map from "../lib/Map.svelte";
+    import Product from "../lib/Product.svelte";
 import ProductCard from "../lib/ProductCard.svelte";
 
     function mojaFunkcja() {
@@ -7,21 +9,18 @@ import ProductCard from "../lib/ProductCard.svelte";
     }
 </script>
 
-<!-- 
-<div>
-    <img src="/Logo WHITE_background.png"  alt="Flowbite Logo" />
-</div> -->
+
 <div class="p-9 flex flex-wrap justify-center" >
-<!-- 
-    <ProductCard />
-    <ProductCard />
-    <ProductCard />
-    <ProductCard />
-    <ProductCard />
-    <ProductCard />
-    <ProductCard />
-    <ProductCard /> -->
+
+<div class='container'>
+
+    
+</div>
+
+
     <AboutCompany/>
+
+    <Map/>
 </div>
 
 <style>

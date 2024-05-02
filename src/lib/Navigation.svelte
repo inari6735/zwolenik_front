@@ -13,17 +13,17 @@
       <span class="self-center whitespace-nowrap text-xl font-semibold dark:text-white">Flowbite</span>
     </NavBrand>
     <NavHamburger />
-    <!-- <NavUl {activeUrl} {activeClass} {nonActiveClass}>  -->
-      <!-- <NavUl>
+    <!-- <NavUl {activeUrl} {activeClass} {nonActiveClass}>   -->
+    <NavUl>
       <NavLi href="/">Home</NavLi>
       <NavLi href="/inspiracje">Inspiracje</NavLi>
-      <NavLi href="/cart"></NavLi>Koszyk</NavLi>
+      <NavLi href="/cart">Koszyk</NavLi>
       <NavLi href="/">Alert</NavLi>
       <NavLi href="/customer">Konto</NavLi>
-    </NavUl> -->
+    </NavUl>
   </Navbar>
 
   <div class="p-5 ">
-  <Map></Map>
+
 
   </div>

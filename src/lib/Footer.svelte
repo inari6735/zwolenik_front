@@ -7,7 +7,7 @@
     } from "flowbite-svelte";
 </script>
 
-<div class="bg-lime-700">
+<div class="footer-p bg-lime-700">
     <Footer >
         <FooterCopyright ulClass="text-black"  href="/" by="Flowbite™" year={2022} />
         
@@ -27,6 +27,9 @@
 
 
 <style>
+.footer-p{
+  
+}
 
 .center {
     padding: 10px;
@@ -36,7 +39,7 @@
     margin-left: 20px;
     margin-right: 20px;
     width: auto; /* zmiana z 1600px na 100% jeśli chcesz pełnej szerokości lub pozostaw 1600px jeśli taka jest wymagana szerokość */
-    height: auto; /* zmiana z 450px na 'auto' aby dopasować do zawartości */
+    height: 450px; /* zmiana z 450px na 'auto' aby dopasować do zawartości */
     padding: 20px;
 }
 </style>

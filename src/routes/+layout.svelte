@@ -1,6 +1,6 @@
 <script>
     import "../app.css";
-    import BottomOfLayout from "../lib/BottomOfLayout.svelte";
+    import Footer from "../lib/Footer.svelte";
     import Navigation from "../lib/Navigation.svelte";
   </script>
   
@@ -10,4 +10,4 @@
 
   <slot />
 
-<BottomOfLayout/>
+<Footer/>
