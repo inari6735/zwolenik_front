@@ -1,7 +1,7 @@
 <script>
 </script>
 
-<div class="center px-5 pb-5 flex">
+<div class="center px-5 pb-5 flex map">
     <div class="contact-form">
         <h1>Skontaktuj się z nami</h1>
         <p>
@@ -33,11 +33,11 @@
     padding: 10px;
     border-radius: 25px; border: 6px solid #73AD21;
     display: flex;
-    justify-content: space-around; /* zmiana z 'block' na 'flex' i dodanie justowania */
+    justify-content: space-around;
     margin-left: 20px;
     margin-right: 20px;
-    width: 100%-40px; /* zmiana z 1600px na 100% jeśli chcesz pełnej szerokości lub pozostaw 1600px jeśli taka jest wymagana szerokość */
-    height: auto; /* zmiana z 450px na 'auto' aby dopasować do zawartości */
+    width: 100%-40px; 
+    height: auto; 
     padding: 20px;
 }
 
@@ -46,11 +46,11 @@
      border: 6px 
     solid #73AD21;
     margin: 20px;
-    width: 50%; /* albo konkretna szerokość w px */
-    height: auto; /* dla dynamicznego dostosowania wysokości */
-    padding: 20px; /* dodanie paddingu dla estetyki */
-    box-shadow: 0 0 10px rgba(0,0,0,0.1); /* opcjonalnie, dla lepszego wyglądu */
-    background-color: #fff; /* dla tła */
+    width: 50%; 
+    height: auto; 
+    padding: 20px; 
+    box-shadow: 0 0 10px rgba(0,0,0,0.1); 
+    background-color: #fff; 
 }
 
 iframe {
@@ -59,9 +59,7 @@ iframe {
     border-radius: 0%;  
   }
 .map {
-    nav-down: auto;
-    width: 35%; /* albo konkretna szerokość w px */
-    height: 450px; /* utrzymanie tej wysokości, chyba że mapa powinna być inaczej */
+    width: 100%;
 }
 
 .map-container {
@@ -70,9 +68,27 @@ iframe {
     border-radius: 25px;
     border: 6px  solid #73AD21;
     width: 50%;
-    height: 400px; /* Adjust height as needed */
+    height: 400px; 
     margin: 20px;
   }
 
+  @media only screen and (max-width: 600px) {
+  .center {
+    flex-direction: column; 
+  }
+
+  .contact-form {
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%; 
+    margin-bottom: 20px; 
+  }
+
+  .map-container {
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+  }
+}
 
 </style>

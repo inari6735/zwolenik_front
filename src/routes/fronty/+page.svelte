@@ -1,6 +1,6 @@
 <script>
 	import { onMount } from 'svelte';
-    import ProductCard from '../../lib/ProductCard.svelte';
+    import ProductCard from '$lib/productCard/ProductCard.svelte';
   
 	let products = [];
   

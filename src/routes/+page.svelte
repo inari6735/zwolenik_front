@@ -1,18 +1,15 @@
 <script>
-    import AboutCompany from "../lib/AboutCompany.svelte";
-    import Map from "../lib/Map.svelte";
-    import Product from "../lib/Product.svelte";
-import ProductCard from "../lib/ProductCard.svelte";
+    import AboutCompany from "$lib/home/AboutCompany.svelte";
+    import Map from "$lib/home/Map.svelte";
 
-    function mojaFunkcja() {
-        console.log("sperma");
-    }
+
+
 </script>
 
 
 <div class="p-9 flex flex-wrap justify-center" >
 
-<div class='container'>
+<div class='container' >
 
     
 </div>
