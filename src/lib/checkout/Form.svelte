@@ -49,7 +49,6 @@
 
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if (!emailRegex.test(formData.email)) {
-            console.log("{formData.email}");
             error = {
                 msg: "Niepoprawny email : " + formData.email,
             };
