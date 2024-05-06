@@ -47,9 +47,9 @@
                     <p class={'font-semibold'}>Product id : {value.id}</p>
 
                     <!-- <p class={'opacity-70'}>JAKIES DETALE</p> -->
-                    <p class={'opacity-70'}>Wysokość: {value.wysokosc}</p>
-                    <p class={'opacity-70'}>Szerokość: {value.szerokosc}</p>
-                    <p class={'opacity-70'}>Grubość: {value.grubosc}</p>
+                    <p class={'opacity-70'}>Wysokość: {value.details.height}</p>
+                    <p class={'opacity-70'}>Szerokość: {value.details.width}</p>
+                    <p class={'opacity-70'}>Grubość: {value.details.thickness}</p>
                     <!-- <p class={'opacity-70 mt-2'}> Costam</p> -->
 
                     <p class={'opacity-70 '}>Dac details clienta</p>

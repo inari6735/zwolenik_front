@@ -33,6 +33,7 @@
       console.log("Odczytano konfiguracje:", configurations);
     }
   });
+  
 </script>
 
 <div class="container">
