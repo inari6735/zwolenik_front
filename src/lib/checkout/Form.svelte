@@ -60,14 +60,13 @@
         const postalCodeRegex = /^\d{2}-\d{3}$/;
         if (!postalCodeRegex.test(formData.postcode)) {
             error = {
-                msg: "Niepoprawny kod pocztowy: " +formData.postcode
+                msg: "Niepoprawny kod pocztowy: " + formData.postcode,
             };
             showModal = true;
             return;
         }
 
         logOrderedItemsFromStorage();
-        showModal = false;
     };
 
     function closeModal() {
@@ -81,17 +80,33 @@
             const orderedConfigurations = configurations.filter(
                 (config) => config.order,
             );
+            orderedConfigurations.forEach((config) => fetchProduct(config));
+            showModal = true;
             error = {
                 msg: "Wysłano zamówienie",
             };
             showModal = true;
             orderedConfigurations.forEach((config) => console.log(config));
         } else {
+            showModal = true;
             error = {
                 msg: "Pusty koszyk",
             };
             showModal = true;
         }
+    }
+
+    function fetchProduct(data) {
+        fetch("http://localhost:8080/api/product_order/create", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(data),
+        })
+            .then((response) => response.text())
+            .then((result) => console.log(result))
+            .catch((error) => console.error("Error:", error));
     }
 </script>
 
@@ -126,9 +141,7 @@
                 Dziękujemy za wybranie naszych usług, w razie problemów
                 skontaktujemy się z Tobą
             </h2>
-            <button class="btn submit" on:click={handleSubmit}>
-                Przejdź do płatności
-            </button>
+            <button class="btn submit"> Przejdź do płatności </button>
         </div>
     {/if}
 </form>

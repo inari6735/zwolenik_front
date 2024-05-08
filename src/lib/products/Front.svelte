@@ -20,7 +20,7 @@
     height: toConfigure.heightMin,
     width: toConfigure.widthMin,
     thickness: toConfigure.thickness[0],
-    kolor: toConfigure.color[0],
+    color: toConfigure.color[0],
   };
 
 
@@ -40,7 +40,7 @@
   let error = undefined;
 
   function decreaseAmount() {
-    if (amount > 0) {
+    if (amount > 1) {
       amount -= 1;
       dispatch("change", { amount });
     }
@@ -86,7 +86,7 @@
       return;
     }
 
-    if (!(toConfigure.thickness.indexOf(details.thickness))) {
+    if ((toConfigure.thickness.indexOf(details.thickness))) {
       error = {
         msg: "Zła grubość",
       };
@@ -94,8 +94,8 @@
     }
 
     const newConfiguration = {
-      id: product.id,
-      details: details,
+      idProduct: product.id,
+      specification: details,
       price: price,
       order: true,
       amount: amount,

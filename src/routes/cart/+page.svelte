@@ -8,7 +8,7 @@
 
   function updateSumPrice() {
     sumPrice = configurations.reduce(
-      (total, item) => (item.order ? total + item.price : total),
+      (total, item) => (item.order ? total + item.price * item.amount : total),
       0,
     );
   }
@@ -24,6 +24,12 @@
     localStorage.setItem("specification", JSON.stringify(configurations));
     window.location.reload();
   }
+
+  function handleProductChange(event, index) {
+        configurations[index].amount = event.detail.amount;
+        localStorage.setItem("specification", JSON.stringify(configurations));
+        updateSumPrice();
+    }
 
   onMount(() => {
     const savedConfigurations = localStorage.getItem("specification");
@@ -48,7 +54,10 @@
           on:change={() => handleCheckboxChange(index)}
         />
         <label for="checkbox-{index}" class="checkbox-label"></label>
-        <ProductsCart value={configuration} />
+        <ProductsCart
+         value={configuration} 
+         on:change={(event) => handleProductChange(event, index)}
+         />
 
         
        
