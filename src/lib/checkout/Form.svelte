@@ -10,9 +10,12 @@
         address: "",
         city: "",
         postcode: "",
-        deliveryOption: "", // Corrected property name
+        deliveryOption: "", 
         paymentMethod: "",
+        configurations: [ ]
     };
+
+  
 
     let deliveryOptions = [
         { value: "", text: "Wybierz sposób dostawy" },
@@ -80,7 +83,8 @@
             const orderedConfigurations = configurations.filter(
                 (config) => config.order,
             );
-            orderedConfigurations.forEach((config) => fetchProduct(config));
+            // orderedConfigurations.forEach((config) => fetchProduct(config));
+            fetchOrder(formData);
             showModal = true;
             error = {
                 msg: "Wysłano zamówienie",
@@ -96,8 +100,11 @@
         }
     }
 
-    function fetchProduct(data) {
-        fetch("http://localhost:8080/api/product_order/create", {
+
+    function fetchOrder(data, orderedConfigurations){
+        data.productOrder = orderedConfigurations;
+
+        fetch("http://localhost:8080/api/order/create", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
