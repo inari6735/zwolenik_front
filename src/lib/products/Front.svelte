@@ -1,12 +1,19 @@
 <script>
   import { Button } from "flowbite-svelte";
   import { createEventDispatcher } from "svelte";
+  import ColorPicker from "../colorpicker/ColorPicker.svelte";
 
   const dispatch = createEventDispatcher();
 
   export let product = undefined;
 
-  const toConfigure ={
+  let productColor = { r: 128, g: 128, b: 128 };
+  let userColor = { r: 128, g: 128, b: 128 };
+
+  function onColorSelected(event) {
+    productColor = event.detail;
+  }
+  const toConfigure = {
     heightMin: 50,
     heightMax: 2750,
     widthMin: 50,
@@ -14,30 +21,25 @@
     thickness: [18, 19, 22],
     color: ["Czerwony", "Zielony", "Niebieski", "Czarny"],
     price: 1,
-  }
+  };
 
-  const details= {
+  const details = {
     height: toConfigure.heightMin,
     width: toConfigure.widthMin,
     thickness: toConfigure.thickness[0],
     color: toConfigure.color[0],
   };
 
-
   let price = 0;
   let amount = 1;
   details.price = product.price;
 
-
-
-  // let wysokosc = 100;
-  // let szerokosc = 100;
-  // const grubosci = [18, 19, 22];
-  // let grubosc = grubosci[0];
-  // const kolory = ["Czerwony", "Zielony", "Niebieski", "Czarny"];
-  // let kolor = kolory[0];
-
   let error = undefined;
+  let colorFind = undefined;
+
+  function colorFindFn() {
+    colorFind = true;
+  }
 
   function decreaseAmount() {
     if (amount > 1) {
@@ -72,21 +74,35 @@
   function saveConfigurations(event) {
     event.preventDefault();
 
-    if (details.height > toConfigure.heightMax || details.height < toConfigure.heightMin) {
+    if (
+      details.height > toConfigure.heightMax ||
+      details.height < toConfigure.heightMin
+    ) {
       error = {
-        msg: "Wysokość musi mieścić się w przedziale " + toConfigure.heightMax + " > x > " + toConfigure.heightMin,
+        msg:
+          "Wysokość musi mieścić się w przedziale " +
+          toConfigure.heightMax +
+          " > x > " +
+          toConfigure.heightMin,
       };
       return;
     }
 
-    if (details.width > toConfigure.widthMax || details.width < toConfigure.widthMin) {
+    if (
+      details.width > toConfigure.widthMax ||
+      details.width < toConfigure.widthMin
+    ) {
       error = {
-        msg: "Szerokość musi mieścić się w przedziale "+ toConfigure.widthMax +" > x > "+ toConfigure.widthMin,
+        msg:
+          "Szerokość musi mieścić się w przedziale " +
+          toConfigure.widthMax +
+          " > x > " +
+          toConfigure.widthMin,
       };
       return;
     }
 
-    if ((toConfigure.thickness.indexOf(details.thickness))) {
+    if (toConfigure.thickness.indexOf(details.thickness)) {
       error = {
         msg: "Zła grubość",
       };
@@ -121,13 +137,54 @@
   function closeModal() {
     error = undefined;
   }
+
+  function closeColorFind() {
+    colorFind = undefined;
+    console.log(productColor);
+  }
 </script>
 
-<div class="container">
-  <div class="image-container">
-    <img src="/SW32313_13242.png" alt="Obraz Produktu" class="product-image" />
-  </div>
+<svelte:head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="keywords" content="Sample Headline" />
+  <meta name="description" content="" />
+  <meta name="theme-color" content="#478ac9" />
+  <meta name="generator" content="Nicepage 6.9.2, nicepage.com" />
+  <meta name="referrer" content="origin" />
+  <meta property="og:title" content="Strona 1" />
+  <meta property="og:type" content="website" />
+  <meta data-intl-tel-input-cdn-path="intlTelInput/" />
+  <title>Strona 1</title>
+  <link rel="stylesheet" href="nicepage.css" media="screen" />
+  <link rel="stylesheet" href="Strona-1.css" media="screen" />
+  <link
+    id="u-theme-google-font"
+    rel="stylesheet"
+    href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,500,500i,600,600i,700,700i,800,800i"
+  />
+  <script
+    type="text/javascript"
+    src="jquery.js"
+    defer
+    class="u-script"
+  ></script>
+  <script
+    type="text/javascript"
+    src="nicepage.js"
+    defer
+    class="u-script"
+  ></script>
+  <script type="application/ld+json">
+    {
+      "@context": "http://schema.org",
+      "@type": "Organization",
+      "name": ""
+    }
+  </script>
+</svelte:head>
 
+<div class="u-body u-xl-mode" data-lang="pl">
   {#if error}
     <div class="modal">
       <div class="update-form">
@@ -136,87 +193,109 @@
       </div>
     </div>
   {/if}
-  <div class="info-container">
-    <h1>{product.name}</h1>
 
-    <form on:submit|preventDefault={saveConfigurations} class="form-container">
-      <div class="input-container">
-        <label for="wysokosc">Wysokość [mm]:</label>
-        <input
-          type="number"
-          id="wysokosc"
-          bind:value={details.height}
-          min= {toConfigure.heightMin}
-          max= {toConfigure.heightMax}
-        />
-      </div>
-
-      <div class="input-container">
-        <label for="szerokosc">Szerokość [mm]:</label>
-        <input
-          type="number"
-          id="szerokosc"
-          bind:value={details.width}
-          min= {toConfigure.widthMin}
-          max= {toConfigure.widthMax}
-        />
-      </div>
-      <div class="input-container">
-        <label for="grubosc">Grubość [mm]:</label>
-        <select id="grubosc" bind:value={details.thickness}>
-          {#each toConfigure.thickness as g}
-            <option value={g}>{g}</option>
-          {/each}
-        </select>
-      </div>
-
-      <div class="input-container">
-        <label for="kolor">Kolor:</label>
-        <select id="kolor" bind:value={details.color}>
-          {#each toConfigure.color as k}
-            <option value={k}>{k}</option>
-          {/each}
-        </select>
-      </div>
+  <section class="u-align-center u-clearfix u-grey-5 u-section-1" id="sec-cf55">
+    <div class="u-clearfix u-sheet u-sheet-1">
+      <img
+        class="u-image u-image-default u-image-1"
+        src="/SW32313_13242.png"
+        alt=""
+        data-image-width="1981"
+        data-image-height="3014"
+      />
+      <h2 class="u-text u-text-default u-text-1">Sample Headline</h2>
       <div
-        class="lg:flex item-center lg:space-x-10 pt-4"
-        style="position: relative;"
+        class="u-expanded-width-md u-expanded-width-sm u-expanded-width-xs u-form u-form-1"
       >
-        <div class="amount-container">
-          <Button on:click={decreaseAmount} style="background:#73AD21;">
-            Odejmnij
-          </Button>
-          <input
-            type="number"
-            id="amount"
-            min="0"
-            max="999"
-            bind:value={amount}
-            on:input={handleInput}
-            class="py-1 px-2 border rounded-md"
-            style="width: 80px;"
-          />
-          <Button on:click={increaseAmount} style="background:#73AD21;">
-            Dodaj
-          </Button>
+        <form
+          on:submit|preventDefault={saveConfigurations}
+          class="u-clearfix u-form-spacing-10 u-form-vertical u-inner-form"
+          name="form"
+          style="padding: 10px;"
+        >
+          <div class="u-form-group u-form-name">
+            <label for="wysokosc" class="u-label">Wysokość [mm]:</label>
 
-          <div class="">
-            {price} zł
+            <input
+              class="u-input u-input-rectangle"
+              type="number"
+              id="wysokosc"
+              bind:value={details.height}
+              min={toConfigure.heightMin}
+              max={toConfigure.heightMax}
+            />
           </div>
-        </div>
-      </div>
-    </form>
 
-    <Button
-      type="button"
-      class=""
-      style="background:#73AD21;"
-      on:click={saveConfigurations}>Zapisz Konfigurację</Button
-    >
-  </div>
+          <div class="u-form-group u-form-name">
+            <label for="szerokosc" class="u-label">Szerokość [mm]:</label>
+
+            <input
+              class="u-input u-input-rectangle"
+              type="number"
+              id="szerokosc"
+              bind:value={details.width}
+              min={toConfigure.widthMin}
+              max={toConfigure.widthMax}
+            />
+          </div>
+
+          <div class="u-form-group u-form-name">
+            <label for="grubosc" class="u-label">Grubość [mm]:</label>
+
+            <select
+              class="u-input u-input-rectangle"
+              id="grubosc"
+              bind:value={details.thickness}
+            >
+              {#each toConfigure.thickness as g}
+                <option value={g}>{g}</option>
+              {/each}
+            </select>
+          </div>
+
+          <div class="u-align-right u-form-group u-form-submit">
+            <Button
+              type="button"
+              class=""
+              style="background:#73AD21;"
+              on:click={saveConfigurations}>Zapisz Konfigurację</Button
+            >
+          </div>
+          <div class="u-form-send-message u-form-send-success">
+            Dziękujemy! Twoja wiadomość została wysłana!
+          </div>
+          <div class="u-form-send-error u-form-send-message">
+            Przepraszamy, wiadomość nie mogła zostać wysłana. Popraw błędy i
+            spróbuj ponownie.
+          </div>
+          <input type="hidden" value="" name="recaptchaResponse" />
+          <input
+            type="hidden"
+            name="formServices"
+            value="633c4c54-48de-c937-f30c-87cbebfc9508"
+          />
+        </form>
+      </div>
+      <img
+        class="u-expanded-width-xs u-image u-image-default u-image-2"
+        src="/SW32313_13242.png"
+        alt=""
+        data-image-width="1981"
+        data-image-height="3014"
+      />
+    </div>
+  </section>
 </div>
 
+
+<!-- 
 <style>
+@media (max-width: 768px) {
+    .amount-button {
+        display: none;
+    }
+}
+
 .input-container {
   display: flex;
   align-items: center;
@@ -233,10 +312,12 @@
   flex: 1;
 }
 
+
   .amount-container {
     display: flex;
     align-items: center;
     gap: 10px;
+    z-index: 1; 
   }
   .update-form {
     border: 6px solid #73ad21;
@@ -253,6 +334,7 @@
     justify-content: center;
     align-items: center;
     background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+    z-index: 100;
   }
 
   .modal > div {
@@ -345,5 +427,16 @@
     .form-container {
       width: auto;
     }
+
+    .decrease-button,
+    .increase-button {
+        display: none;
+    }
   }
+</style> -->
+
+<style>
+  @import "https://fonts.googleapis.com/css?family=Oswald:200,300,400,500,600,700|Open+Sans:300,300i,400,400i,500,500i,600,600i,700,700i,800,800i";
+  @import "nicepage.css";
+  @import "Strona-1.css";
 </style>
