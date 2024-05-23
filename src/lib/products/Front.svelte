@@ -163,18 +163,7 @@
     rel="stylesheet"
     href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,500,500i,600,600i,700,700i,800,800i"
   />
-  <script
-    type="text/javascript"
-    src="jquery.js"
-    defer
-    class="u-script"
-  ></script>
-  <script
-    type="text/javascript"
-    src="nicepage.js"
-    defer
-    class="u-script"
-  ></script>
+  
   <script type="application/ld+json">
     {
       "@context": "http://schema.org",
@@ -185,24 +174,18 @@
 </svelte:head>
 
 <div class="u-body u-xl-mode" data-lang="pl">
-  {#if error}
-    <div class="modal">
-      <div class="update-form">
-        <p>{error.msg}</p>
-        <button class="btn submit" on:click={closeModal}>OK</button>
-      </div>
-    </div>
-  {/if}
 
   <section class="u-align-center u-clearfix u-grey-5 u-section-1" id="sec-cf55">
     <div class="u-clearfix u-sheet u-sheet-1">
-      <img
+
+      <!-- <img
         class="u-image u-image-default u-image-1"
         src="/SW32313_13242.png"
         alt=""
         data-image-width="1981"
         data-image-height="3014"
-      />
+      /> -->
+
       <h2 class="u-text u-text-default u-text-1">Sample Headline</h2>
       <div
         class="u-expanded-width-md u-expanded-width-sm u-expanded-width-xs u-form u-form-1"
@@ -254,6 +237,10 @@
           </div>
 
           <div class="u-align-right u-form-group u-form-submit">
+            <Button on:click={colorFindFn} style="background:#73AD21;">
+              Wybierz kolor
+            </Button>
+
             <Button
               type="button"
               class=""
@@ -275,16 +262,40 @@
             value="633c4c54-48de-c937-f30c-87cbebfc9508"
           />
         </form>
+
+
       </div>
       <img
-        class="u-expanded-width-xs u-image u-image-default u-image-2"
-        src="/SW32313_13242.png"
-        alt=""
-        data-image-width="1981"
-        data-image-height="3014"
-      />
+      class="u-expanded-width-xs u-image u-image-default u-image-1"
+      
+      src="/SW32313_13242.png"
+      alt=""
+      data-image-width="1981"
+      data-image-height="3014"
+    />
     </div>
   </section>
+  <!-- u-image u-image-default u-image-1 -->
+  {#if error}
+  <div class="modal">
+    <div class="update-form">
+      <p>{error.msg}</p>
+      <button class="btn submit" on:click={closeModal}>OK</button>
+    </div>
+  </div>
+{/if}
+
+{#if  colorFind}
+<div class="modal">
+  <div class="update-form">
+    <ColorPicker inputColor={productColor}  userColor={userColor} onSelectColor={productColor}/>
+      <button class="btn submit" on:click={closeColorFind} >OK</button>
+    <!-- <p>{error.msg}</p>
+    <button class="btn submit" on:click={closeColorFind}>OK</button> -->
+  </div>
+</div>
+{/if}
+
 </div>
 
 
@@ -436,7 +447,53 @@
 </style> -->
 
 <style>
+  /* .u-disable-duration * {transition-duration: 0s !important;} */
   @import "https://fonts.googleapis.com/css?family=Oswald:200,300,400,500,600,700|Open+Sans:300,300i,400,400i,500,500i,600,600i,700,700i,800,800i";
   @import "nicepage.css";
   @import "Strona-1.css";
+
+  .update-form {
+    border: 6px solid #73ad21;
+    border-radius: 10px;
+    flex: 60%;
+    margin: 4%;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .modal {
+    display: flex;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+    z-index: 100;
+  }
+
+  .modal > div {
+    padding: 20px;
+    background: white;
+    border: 2px solid #73ad21;
+    z-index: 10;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+
+  .btn {
+    color: white;
+    padding: 0.5rem 0;
+    margin-top: 0.5rem;
+    display: inline-block;
+    width: 100%;
+    border-radius: 0.25rem;
+    cursor: pointer;
+  }
+
+  .submit {
+    background: linear-gradient(to bottom, #50b01c 5%, #73ad21 100%);
+    background-color: #50b01c;
+  }
 </style>

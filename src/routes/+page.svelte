@@ -1,7 +1,7 @@
 <script>
     import AboutCompany from "$lib/home/AboutCompany.svelte";
     import Map from "$lib/home/Map.svelte";
-
+    import MainPage from '$lib/page/MainPage.svelte';
 
 
 </script>
@@ -14,10 +14,12 @@
     
 </div>
 
-
-    <AboutCompany/>
+    <MainPage/>
+    <!-- <AboutCompany/> -->
 
     <Map/>
+
+
 </div>
 
 <style>

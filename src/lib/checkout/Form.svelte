@@ -4,18 +4,19 @@
     let showModal = false;
 
     let formData = {
-        name: "",
-        surname: "",
         email: "",
-        address: "",
-        city: "",
-        postcode: "",
-        deliveryOption: "", 
-        paymentMethod: "",
-        configurations: [ ]
-    };
+        address: {
+            name: "",
+            surname: "",
+            alley: "",
+            city: "",
+            postcode: "",
+            deliveryOption: "",
+        },
 
-  
+        paymentMethod: "",
+        configurations: [],
+    };
 
     let deliveryOptions = [
         { value: "", text: "Wybierz sposób dostawy" },
@@ -34,13 +35,13 @@
 
     const handleSubmit = () => {
         if (
-            !formData.name ||
-            !formData.surname ||
+            !formData.address.name ||
+            !formData.address.surname ||
             !formData.email ||
-            !formData.address ||
-            !formData.city ||
-            !formData.postcode ||
-            !formData.deliveryOption ||
+            !formData.address.alley ||
+            !formData.address.city ||
+            !formData.address.postcode ||
+            !formData.address.deliveryOption ||
             !formData.paymentMethod
         ) {
             error = {
@@ -61,9 +62,9 @@
         }
 
         const postalCodeRegex = /^\d{2}-\d{3}$/;
-        if (!postalCodeRegex.test(formData.postcode)) {
+        if (!postalCodeRegex.test(formData.address.postcode)) {
             error = {
-                msg: "Niepoprawny kod pocztowy: " + formData.postcode,
+                msg: "Niepoprawny kod pocztowy: " + formData.address.postcode,
             };
             showModal = true;
             return;
@@ -84,7 +85,7 @@
                 (config) => config.order,
             );
             // orderedConfigurations.forEach((config) => fetchProduct(config));
-            fetchOrder(formData);
+            fetchOrder(formData, orderedConfigurations);
             showModal = true;
             error = {
                 msg: "Wysłano zamówienie",
@@ -100,9 +101,16 @@
         }
     }
 
+    function fetchOrder(data, orderedConfigurations) {
+        console.log(orderedConfigurations);
 
-    function fetchOrder(data, orderedConfigurations){
-        data.productOrder = orderedConfigurations;
+        if (Array.isArray(orderedConfigurations)) {
+            orderedConfigurations.forEach((config) => delete config.order);
+        } else {
+            delete orderedConfigurations.order;
+        }
+        console.log(orderedConfigurations);
+        data.configurations = orderedConfigurations;
 
         fetch("http://localhost:8080/api/order/create", {
             method: "POST",
@@ -119,19 +127,22 @@
 
 <form class="form-container" on:submit|preventDefault={handleSubmit}>
     {#if active_step === "Podsumowanie"}
-        <InputField label={"Imię"} bind:value={formData.name} />
-        <InputField label={"Nazwisko"} bind:value={formData.surname} />
+        <InputField label={"Imię"} bind:value={formData.address.name} />
+        <InputField label={"Nazwisko"} bind:value={formData.address.surname} />
         <InputField label={"Email"} bind:value={formData.email} />
     {:else if active_step === "Dostawa"}
         <InputField
             label={"Ulica z numer budynku i mieszkania"}
-            bind:value={formData.address}
+            bind:value={formData.address.alley}
         />
-        <InputField label={"Miasto"} bind:value={formData.city} />
-        <InputField label={"Kod pocztowy"} bind:value={formData.postcode} />
+        <InputField label={"Miasto"} bind:value={formData.address.city} />
+        <InputField
+            label={"Kod pocztowy"}
+            bind:value={formData.address.postcode}
+        />
     {:else if active_step === "Płatność"}
         <h1>Metoda dostawy</h1>
-        <select bind:value={formData.deliveryOption}>
+        <select bind:value={formData.address.deliveryOption}>
             {#each deliveryOptions as option}
                 <option value={option.value}>{option.text}</option>
             {/each}
