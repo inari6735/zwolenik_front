@@ -158,7 +158,7 @@
     display: flex;
     flex-direction: column;
     flex: 2; /* 2/3 szerokości */
-    gap: 20px;
+    gap: 10px;
   }
   .container {
     padding: 50px;
@@ -193,7 +193,7 @@
     gap: 20px;
   }
 
-  @media (max-width: 640px) {
+  @media (max-width: 1199px) {
     .container {
       flex-direction: column;
     }
@@ -206,4 +206,11 @@
       width: auto;
     }
   }
+
+  @media (max-width: 749px) {
+    .checkbox-label {
+      position: relative;
+  }
+  }
+
 </style>
