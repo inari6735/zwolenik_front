@@ -144,47 +144,14 @@
   }
 </script>
 
-<svelte:head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="keywords" content="Sample Headline" />
-  <meta name="description" content="" />
-  <meta name="theme-color" content="#478ac9" />
-  <meta name="generator" content="Nicepage 6.9.2, nicepage.com" />
-  <meta name="referrer" content="origin" />
-  <meta property="og:title" content="Strona 1" />
-  <meta property="og:type" content="website" />
-  <meta data-intl-tel-input-cdn-path="intlTelInput/" />
-  <title>Strona 1</title>
-  <link rel="stylesheet" href="nicepage.css" media="screen" />
-  <link rel="stylesheet" href="Strona-1.css" media="screen" />
-  <link
-    id="u-theme-google-font"
-    rel="stylesheet"
-    href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,500,500i,600,600i,700,700i,800,800i"
-  />
-  
-  <script type="application/ld+json">
-    {
-      "@context": "http://schema.org",
-      "@type": "Organization",
-      "name": ""
-    }
-  </script>
-</svelte:head>
-
 <div class="u-body u-xl-mode" data-lang="pl">
 
-  <section class="u-align-center u-clearfix u-grey-5 u-section-1" id="sec-cf55">
-    <div class="u-clearfix u-sheet u-sheet-1">
-
-      <!-- <img
-        class="u-image u-image-default u-image-1"
-        src="/SW32313_13242.png"
-        alt=""
-        data-image-width="1981"
-        data-image-height="3014"
-      /> -->
+  <section>
+    <div class="container u-sheet u-sheet-1">
+      <div class="image">
+        <img src="/SW32313_13242.png" alt="" />
+      </div>
+      <div class="form">
 
       <h2 class="u-text u-text-default u-text-1">Sample Headline</h2>
       <div
@@ -192,11 +159,11 @@
       >
         <form
           on:submit|preventDefault={saveConfigurations}
-          class="u-clearfix u-form-spacing-10 u-form-vertical u-inner-form"
+          class=" u-form-spacing-10 u-form-vertical u-inner-form"
           name="form"
           style="padding: 10px;"
         >
-          <div class="u-form-group u-form-name">
+          <div class="form-d">
             <label for="wysokosc" class="u-label">Wysokość [mm]:</label>
 
             <input
@@ -209,7 +176,7 @@
             />
           </div>
 
-          <div class="u-form-group u-form-name">
+          <div class="form-d">
             <label for="szerokosc" class="u-label">Szerokość [mm]:</label>
 
             <input
@@ -222,7 +189,7 @@
             />
           </div>
 
-          <div class="u-form-group u-form-name">
+          <div class="form-d">
             <label for="grubosc" class="u-label">Grubość [mm]:</label>
 
             <select
@@ -265,14 +232,7 @@
 
 
       </div>
-      <img
-      class="u-expanded-width-xs u-image u-image-default u-image-1"
-      
-      src="/SW32313_13242.png"
-      alt=""
-      data-image-width="1981"
-      data-image-height="3014"
-    />
+      </div>
     </div>
   </section>
   <!-- u-image u-image-default u-image-1 -->
@@ -299,8 +259,13 @@
 </div>
 
 
-<!-- 
+
 <style>
+.form-d input{
+  width: auto;
+
+}
+
 @media (max-width: 768px) {
     .amount-button {
         display: none;
@@ -333,6 +298,10 @@
   .update-form {
     border: 6px solid #73ad21;
     border-radius: 10px;
+    flex: 60%;
+    margin: 4%;
+    justify-content: center;
+    align-items: center;
   }
 
   .modal {
@@ -380,7 +349,6 @@
     justify-content: center;
     align-items: start;
     gap: 20px;
-    max-width: 1200px; /* Ograniczenie szerokości kontenera */
     width: 100%;
     box-sizing: border-box;
   }
@@ -444,56 +412,34 @@
         display: none;
     }
   }
-</style> -->
 
-<style>
-  /* .u-disable-duration * {transition-duration: 0s !important;} */
-  @import "https://fonts.googleapis.com/css?family=Oswald:200,300,400,500,600,700|Open+Sans:300,300i,400,400i,500,500i,600,600i,700,700i,800,800i";
-  @import "nicepage.css";
-  @import "Strona-1.css";
-
-  .update-form {
-    border: 6px solid #73ad21;
-    border-radius: 10px;
-    flex: 60%;
-    margin: 4%;
-    justify-content: center;
-    align-items: center;
-  }
-
-  .modal {
+  .container {
     display: flex;
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
+    flex-wrap: wrap;
+  }
+
+  .image {
+    flex: 1;
+    margin: auto;
     justify-content: center;
     align-items: center;
-    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
-    z-index: 100;
   }
 
-  .modal > div {
-    padding: 20px;
-    background: white;
-    border: 2px solid #73ad21;
-    z-index: 10;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  .image img {
+    width: 80%;
+    height: auto;
+    margin: auto;
+    justify-content: center;
+    align-items: center;
   }
 
-  .btn {
-    color: white;
-    padding: 0.5rem 0;
-    margin-top: 0.5rem;
-    display: inline-block;
-    width: 100%;
-    border-radius: 0.25rem;
-    cursor: pointer;
-  }
+  .form {
+    flex: 1;
+    }
 
-  .submit {
-    background: linear-gradient(to bottom, #50b01c 5%, #73ad21 100%);
-    background-color: #50b01c;
+  @media (max-width: 991px) {
+    .container {
+      flex-direction: column;
+    }
   }
 </style>
