@@ -68,7 +68,7 @@
         class="lg:flex item-center lg:space-x-10 pt-4"
         style="position: relative;"
     >
-        <div class="content" style="position: absolute; bottom: 0; right: 0;">
+        <div class="content" >
             <Button on:click={decreaseAmount} style="background:#73AD21;">
                 Odejmnij
             </Button>
@@ -90,6 +90,14 @@
 </div>
 
 <style>
+      @media (min-width: 545px) {
+
+    .content{
+        position: absolute;
+         bottom: 0;
+          right: 0;
+    }
+      }
     .order {
         width: 100%;
         margin: 20px;

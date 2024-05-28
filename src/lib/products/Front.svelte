@@ -144,6 +144,8 @@
   }
 </script>
 
+{product.category.detailsCategory}
+
 <div class="u-body u-xl-mode" data-lang="pl">
 
   <section>
@@ -180,7 +182,7 @@
             <label for="szerokosc" class="u-label">Szerokość [mm]:</label>
 
             <input
-              class="u-input u-input-rectangle"
+              class="object-right"
               type="number"
               id="szerokosc"
               bind:value={details.width}
@@ -211,23 +213,31 @@
             <Button
               type="button"
               class=""
-              style="background:#73AD21;"
+              style="background:#73AD21; s"
               on:click={saveConfigurations}>Zapisz Konfigurację</Button
             >
           </div>
-          <div class="u-form-send-message u-form-send-success">
-            Dziękujemy! Twoja wiadomość została wysłana!
+          
+          <div>
+            <Button on:click={decreaseAmount} class="amount-button" style="background:#73AD21;">
+            -
+           </Button>
+
+           <input
+           class=""
+           type="number"
+           id="amount"
+           bind:value={amount}
+           min={1}
+           max={999}
+         />
+
+            <Button on:click={increaseAmount} class="amount-button" style="background:#73AD21;">
+            +
+            </Button>
+
           </div>
-          <div class="u-form-send-error u-form-send-message">
-            Przepraszamy, wiadomość nie mogła zostać wysłana. Popraw błędy i
-            spróbuj ponownie.
-          </div>
-          <input type="hidden" value="" name="recaptchaResponse" />
-          <input
-            type="hidden"
-            name="formServices"
-            value="633c4c54-48de-c937-f30c-87cbebfc9508"
-          />
+
         </form>
 
 
@@ -261,9 +271,18 @@
 
 
 <style>
-.form-d input{
-  width: auto;
+.form-d   select,
+  input {
+    display: inline-block;
+    margin-top: 10px;
+    border: 3px solid #73ad21;
+    border-radius: 15px;
+    text-align: right;
+    align-items: right;
+    justify-content: right;
 
+    /* width: full; */
+  
 }
 
 @media (max-width: 768px) {
@@ -385,13 +404,7 @@
     margin-top: 10px;
   }
 
-  select,
-  input {
-    display: inline-block;
-    margin-top: 10px;
-    border: 6px solid #73ad21;
-    border-radius: 25px;
-  }
+
 
   @media (max-width: 640px) {
     .container {

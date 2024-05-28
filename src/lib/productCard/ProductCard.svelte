@@ -14,9 +14,9 @@
     export let product;
   </script>
 
-  <Card padding="none" style=" border-radius: 25px; border: 4px solid #73AD21; margin: 10px">
-
-    <img src="/SW32313_13242.png" class="p-8 rounded-t-lg center" style="cursor: pointer" width=400 height=auto pixels  alt="" />
+  <Card padding="none" style=" border-radius: 25px; border: 4px solid #73AD21; margin: 10px  ">
+    
+    <img src="/SW32313_13242.png" class="p-8 rounded-t-lg  aspect-[3/4]" style="cursor: pointer" max-width=385 alt="" />
 
     <div class="px-5 pb-5">
       <a href="/">
@@ -27,12 +27,14 @@
       </Rating> -->
       <div class="flex justify-between items-center">
         <span class="text-3xl font-bold text-gray-900 dark:text-white">{product.price}</span>
-        <Button href='/product/{product.id}' class="center" style="background:#73AD21;">
+        <Button href='/product/{product.id}' style="background:#73AD21;">
           Sprawdź
       </Button>
       </div>
       
     </div>
+
+
   </Card>
 
   <style>
@@ -41,8 +43,15 @@
   display: block;
   margin-left: auto;
   margin-right: auto;
-  width: 285px;
-  height: 450px;
+  /* width: 285px;
+  height: 450px; */
+}
+
+.center-btn{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+
 }
 
 </style>

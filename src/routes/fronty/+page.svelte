@@ -12,10 +12,13 @@
   
  
   
-  <div class="p-9 flex flex-wrap justify-center">
+  <div class="p-9 flex flex-wrap justify-center ">
 	{#each products as product}
 		<ProductCard {product}/> 
 	
 	{/each}
   </div>
+
+
+
   

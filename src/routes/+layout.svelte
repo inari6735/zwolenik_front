@@ -14,7 +14,7 @@
   });
 
   $: {
-    if ($page.url.pathname.startsWith('/panel') && !isLoggedIn) {
+    if ($page.url.pathname.startsWith('/adminpanel') && !isLoggedIn) {
       window.location.href = '/admin';
     }
   }

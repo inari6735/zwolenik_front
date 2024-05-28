@@ -170,8 +170,8 @@
     justify-content: center;
     align-items: start;
     gap: 20px;
-    min-height: 700px;
-    max-width: 1600px;
+    /* min-height: 700px;
+    max-width: 1600px; */
     width: 100%;
     box-sizing: border-box;
   }
