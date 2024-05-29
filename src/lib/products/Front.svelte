@@ -166,7 +166,41 @@
           style="padding: 10px;"
         >
           <div class="form-d">
-            <label for="wysokosc" class="u-label">Wysokość [mm]:</label>
+            {#each Object.entries(product.category.detailsCategory) as [key, value]}
+            {#if value.form === "input"}
+              <!-- Input -->
+              <label for={value.name}>{key.charAt(0).toUpperCase() + key.slice(1)}:</label>
+              <input 
+              class="u-input u-input-rectangle"
+             
+            
+               type="number" 
+              
+
+                name={value.name} 
+                min={value.min} 
+                max={value.max} 
+                bind:value={details[value.name]}
+              />
+            {:else if value.form === "select"}
+              <!-- Select -->
+              <label for={value.name}>{key.charAt(0).toUpperCase() + key.slice(1)}:</label>
+              <select name={value.name}
+              
+              class="u-input u-input-rectangle"
+              
+              bind:value={details[value.name]}
+              >
+                {#each value.options as option}
+                  <option value={option}>{option}</option>
+                {/each}
+              </select>
+            {/if}
+          {/each}
+
+
+
+            <!-- <label for="wysokosc" class="u-label">Wysokość [mm]:</label>
 
             <input
               class="u-input u-input-rectangle"
@@ -202,7 +236,7 @@
               {#each toConfigure.thickness as g}
                 <option value={g}>{g}</option>
               {/each}
-            </select>
+            </select> -->
           </div>
 
           <div class="u-align-right u-form-group u-form-submit">
